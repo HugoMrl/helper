@@ -8,6 +8,7 @@ Functions :
 $()
 $$()
 dedupe()
+eventGA()
 getCookie()
 getOffsetTop()
 getParams()
@@ -79,6 +80,20 @@ var dedupe = function (arr) {
     return arr.indexOf(item) === index;
   });
 };
+
+/*
+ * Send an event to Google Analytics
+ * @param {String}  category  The event Category
+ * @param {String}  action  The event Action
+ * @param {String}  label  The event Label
+ * @param {String}  trackerName  The tracker name
+ * @param {Boolean}  interactive  The event interactivity, causing bounce or not
+ */
+var eventGA = function (category, action, label, trackerName = "", interactive = true) {
+  let tracker = trackerName ? trackerName+".send" : "send";
+  let interactivity = interactive?1:0;
+  window[window['GoogleAnalyticsObject']](tracker, 'event', category, action, label, {'nonInteraction': interactivity});
+}
 
 /*
  * Get the value of a cookie
@@ -375,9 +390,9 @@ var scrollStop = function (callback) {
  * @param  {String} name  The name of the cookie
  * @param  {String} value  The cookie value
  */
-var setCookie = function (name,value,expirationInSeconds,path = "/") {
+var setCookie = function (name, value, expirationInSeconds, path = "/") {
   var date = new Date();
   date.setTime(date.getTime() + (expirationInSeconds * 1000));
   date.toGMTString()
-  document.cookie = name+"="+value+"; expires="+date+"; path="+path;
+  document.cookie = name + "=" + value + "; expires=" + date + "; path=" + path;
 };
