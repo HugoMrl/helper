@@ -22,6 +22,7 @@ scrollDistance()
 scrollStop()
 setCookie()
 shuffle()
+slugify()
 */
 
 /*
@@ -395,4 +396,28 @@ var setCookie = function (name, value, expirationInSeconds, path = "/") {
   date.setTime(date.getTime() + (expirationInSeconds * 1000));
   date.toGMTString()
   document.cookie = name + "=" + value + "; expires=" + date + "; path=" + path;
+};
+
+/*
+ *
+ * Slugify and remove all diacritics from a string
+ * @param {String} string to replace
+ * @return {String} string replaced
+ */
+var slugify = function(str) {
+    var map = {
+        '-' : ' ',
+        '-' : '_',
+        'a' : 'á|à|ã|â|À|Á|Ã|Â',
+        'e' : 'é|è|ê|É|È|Ê',
+        'i' : 'í|ì|î|Í|Ì|Î',
+        'o' : 'ó|ò|ô|õ|Ó|Ò|Ô|Õ',
+        'u' : 'ú|ù|û|ü|Ú|Ù|Û|Ü',
+        'c' : 'ç|Ç',
+        'n' : 'ñ|Ñ'
+    };
+    for (var pattern in map) {
+        str = str.replace(new RegExp(map[pattern], 'g'), pattern);
+    };
+    return str;
 };
