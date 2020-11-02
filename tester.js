@@ -23,7 +23,7 @@ var addCSS = function (content, id){
       removeElement(`style#${id}`) 
     }
   }
-  styleSheet.innerText = styles;
+  styleSheet.innerText = content;
   document.head.appendChild(styleSheet);
 }
 
