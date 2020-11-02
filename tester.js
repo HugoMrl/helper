@@ -30,8 +30,6 @@ var addCSS = function (content, id){
 /*
  * Remove element from the DOM
  * @param  {String} selector The element selector
- * @param  {Node}   parent   The parent to search in [optional]
- * @return {Node}            The element
  */
 var removeElement = function (selector) {
   document.querySelector(selector).parentElement.removeChild(document.querySelector(selector))
