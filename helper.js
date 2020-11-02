@@ -1,7 +1,7 @@
 /*
 * Helpers.JS
-* V1.0
-* 21/08/2020
+* V1.1
+* 02/11/2020
 * Hugo MORELLE
 
 Functions :
@@ -31,7 +31,7 @@ slugify()
  * @param  {Node}   parent   The parent to search in [optional]
  * @return {Node}            The element
  */
-let $ = function (selector, parent) {
+var $ = function (selector, parent) {
   return (parent ? parent : document).querySelector(selector);
 };
 
@@ -91,9 +91,9 @@ var dedupe = function (arr) {
  * @param {Boolean}  interactive  The event interactivity, causing bounce or not
  */
 var eventGA = function (category, action, label, trackerName = "", interactive = true) {
-  let tracker = trackerName ? trackerName+".send" : "send";
-  let interactivity = interactive?1:0;
-  window[window['GoogleAnalyticsObject']](tracker, 'event', category, action, label, {'nonInteraction': interactivity});
+  var tracker = trackerName ? trackerName + ".send" : "send";
+  var interactivity = interactive ? 1 : 0;
+  window[window['GoogleAnalyticsObject']](tracker, 'event', category, action, label, { 'nonInteraction': interactivity });
 }
 
 /*
@@ -404,20 +404,20 @@ var setCookie = function (name, value, expirationInSeconds, path = "/") {
  * @param {String} string to replace
  * @return {String} string replaced
  */
-var slugify = function(str) {
-    var map = {
-        '-' : ' ',
-        '-' : '_',
-        'a' : 'á|à|ã|â|À|Á|Ã|Â',
-        'e' : 'é|è|ê|É|È|Ê',
-        'i' : 'í|ì|î|Í|Ì|Î',
-        'o' : 'ó|ò|ô|õ|Ó|Ò|Ô|Õ',
-        'u' : 'ú|ù|û|ü|Ú|Ù|Û|Ü',
-        'c' : 'ç|Ç',
-        'n' : 'ñ|Ñ'
-    };
-    for (var pattern in map) {
-        str = str.replace(new RegExp(map[pattern], 'g'), pattern);
-    };
-    return str;
+var slugify = function (str) {
+  var map = {
+    '-': ' ',
+    '-': '_',
+    'a': 'á|à|ã|â|À|Á|Ã|Â',
+    'e': 'é|è|ê|É|È|Ê',
+    'i': 'í|ì|î|Í|Ì|Î',
+    'o': 'ó|ò|ô|õ|Ó|Ò|Ô|Õ',
+    'u': 'ú|ù|û|ü|Ú|Ù|Û|Ü',
+    'c': 'ç|Ç',
+    'n': 'ñ|Ñ'
+  };
+  for (var pattern in map) {
+    str = str.replace(new RegExp(map[pattern], 'g'), pattern);
+  };
+  return str;
 };
