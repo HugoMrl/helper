@@ -147,9 +147,11 @@ var getParams = function (url) {
 
 /*
  * Make an HTTP GET request
- * @param  {String}  base   The URL end point
- * @param  {String}  params The request parameters
- * @return {Boolean}        Returns true if element is in the viewport
+ * @param  {String}  base       The URL end point
+ * @param  {String}  params     The request parameters
+ * @param  {String}  body       The request body
+ * @param  {String}  user       The request user (optional)
+ * @param  {String}  password   The request password (optional)
  */
 var httpGet = function (base, params, body=null, user = null, password = null) {
   var request = new XMLHttpRequest();
