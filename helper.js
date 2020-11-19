@@ -151,7 +151,7 @@ var getParams = function (url) {
  * @param  {String}  params The request parameters
  * @return {Boolean}        Returns true if element is in the viewport
  */
-var httpGET = function (base, params, body=null, user = null, password = null) {
+var httpGet = function (base, params, body=null, user = null, password = null) {
   var request = new XMLHttpRequest();
   request.onreadystatechange = function () {
     // Si la requête est complète et le retour est OK
