@@ -12,6 +12,7 @@ eventGA()
 getCookie()
 getOffsetTop()
 getParams()
+httpGet()
 isInViewport()
 isOutOfViewport()
 onClickOrTap()
@@ -145,6 +146,28 @@ var getParams = function (url) {
 
 
 /*
+ * Make an HTTP GET request
+ * @param  {String}  base   The URL end point
+ * @param  {String}  params The request parameters
+ * @return {Boolean}        Returns true if element is in the viewport
+ */
+var httpGET = function (base, params, body=null, user = null, password = null) {
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    // Si la requête est complète et le retour est OK
+    if (this.readyState == 4 && this.status == 200) {
+      var response = request.responseText;
+      console.log(JSON.parse(response));
+      //Do something
+    }
+  }
+  request.open("GET", base+"?"+params, true, user, password); // true pour une requête asynchrone
+  if(user!=null){request.withCredentials = true};
+  request.send(body);
+};
+
+
+/*
  * Determine if an element is in the viewport
  * @param  {Node}    elem The element
  * @return {Boolean}      Returns true if element is in the viewport
@@ -158,6 +181,7 @@ var isInViewport = function (elem) {
     distance.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
 };
+
 
 /*
  * Check if an element is out of the viewport
